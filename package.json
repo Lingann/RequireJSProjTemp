@@ -1,0 +1,27 @@
+{
+  "name": "requirejsprojtemp",
+  "version": "0.0.0",
+  "description": "RequireJS 模板项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lingann/RequireJSProjTemp.git"
+  },
+  "keywords": [
+    "Web",
+    "Project",
+    "Template"
+  ],
+  "author": "Lingann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lingann/RequireJSProjTemp/issues"
+  },
+  "homepage": "https://github.com/Lingann/RequireJSProjTemp#readme",
+  "devDependencies": {
+    "webpack-cli": "^3.3.10"
+  }
+}

@@ -4,7 +4,10 @@
   "description": "RequireJS 模板项目",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --optimize-minimize",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config webpack.config.js",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,12 @@
   },
   "homepage": "https://github.com/Lingann/RequireJSProjTemp#readme",
   "devDependencies": {
-    "webpack-cli": "^3.3.10"
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   }
 }

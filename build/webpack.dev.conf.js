@@ -7,14 +7,14 @@ const webpackConfigDev = {
     output: {
         path: path.resolve(__dirname,'../dist'),
         // 打包多出口文件
-        filename: 'script/[name].bundle.script'
+        filename: 'script/[name].bundle.js'
     },
     devServer: {
         contentBase : path.join(__dirname,"../src/pages/index"),
         publicPath: '/',
         host: "127.0.0.1",
-        port: "8090",
-        hot: true,
+        port: 9000,
+        // hot: true,
         overlay: true, // 浏览器页面上显示错误
         // open: true, // 开启浏览器
         // stats: "errors-only", //stats: "errors-only"表示只打印错误：

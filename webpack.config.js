@@ -33,8 +33,8 @@ module.exports = {
         //使用HTMLWebpack插件
         new HtmlWebpackPlugin({
             title: "页面标题",
-            // template: "./src/pages/index.html",
-            filename: "dist/index.html"
+            template: "./src/pages/index.html",
+            filename: "index.html"
             // excludeChunks: ['list','detail']
         }),
         // 使用CleanWebpack插件
@@ -51,11 +51,11 @@ module.exports = {
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        compress: true,
+        // compress: true,
         port: 9000,
-        historyApiFallback: true,
+        // historyApiFallback: true,
         // hot: true,
         inline: true,
-        progress: true
+        // progress: true
     }
 };

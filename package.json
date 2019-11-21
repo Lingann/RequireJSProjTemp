@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --optimize-minimize",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config webpack.config.js",
+    "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
     "start": "npm run dev"
   },
   "repository": {

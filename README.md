@@ -281,8 +281,6 @@ module.exports.ENV_LIST = ENV_LIST;
 
 
 
-
-
 **配置`webpack.base.conf.js`文件**
 
 `webpack.base.conf.js`是作为公共配置文件
@@ -398,7 +396,7 @@ module.exports = rules;
 - [Webpack下多环境配置的思路](https://juejin.im/post/5b319c5e518825749d2d60be)
 - [Webpack 生产环境配置介绍](https://webpack.js.org/guides/production/)
 
-
+- [为什么我们要做三份 Webpack配置文件](https://zhuanlan.zhihu.com/p/29161762)
 
 #### 1.4.4 webpack构建多页面
 
@@ -411,6 +409,14 @@ module.exports = rules;
 ##### 1.4.5.1 webpack-dev-server
 
 webpack-dev-server 是一个小型node.js express 服务器，它通过webpack-dev-middleware来为webpack打包的资源文件提供服务。可以认为webpack-dev-server就是一个拥有实时重载能力的镜头资源服务器（建议只在开发环境使用）
+
+**安装**
+
+```
+npm install webpack-dev-server --save-dev
+```
+
+
 
 ##### 1.4.5.2 HtmlwebpackPlugin
 

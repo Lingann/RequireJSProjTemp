@@ -33,8 +33,8 @@ module.exports = {
         //使用HTMLWebpack插件
         new HtmlWebpackPlugin({
             title: "页面标题",
-            template: "./src/pages/index.html",
-            filename: "index.html"
+            template: "./src/pages/index.ejs",
+            filename: "index.ejs"
             // excludeChunks: ['list','detail']
         }),
         // 使用CleanWebpack插件
@@ -47,7 +47,6 @@ module.exports = {
         //         ignore: ['.*'] // 忽略规则。（这种写法表示将该文件夹下的所有文件都复制）
         //     }
         // ]),
-
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),

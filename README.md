@@ -432,7 +432,7 @@ npm install cross-env --save-dev
 
 #### 1.4.5 webpack常用插件
 
-##### 1.4.5.1 webpack-dev-server
+##### 1.4.5.1  开发测试服务器`webpack-dev-server` 
 
 webpack-dev-server 是一个小型node.js express 服务器，它通过webpack-dev-middleware来为webpack打包的资源文件提供服务。可以认为webpack-dev-server就是一个拥有实时重载能力的镜头资源服务器（建议只在开发环境使用）
 
@@ -444,7 +444,7 @@ npm install webpack-dev-server --save-dev
 
 
 
-##### 1.4.5.2 HtmlwebpackPlugin
+##### 1.4.5.2 处理html模板 `HtmlWebpackPlugin`
 
 `HtmlWebpackPlugin`简化了HTML文件的创建，该插件将为你生成一个HTML5文件，其中包括使用`script`标签的body中所有webpack包
 
@@ -468,7 +468,7 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 plugins: [
     new HtmlWebpackPlugin({
         title: "页面标题",
-        template: "./src/pages/index.html",
+        template: index.ejs,
         excludeChunks: ['list','detail']
     }),
     new HtmlWebpackPlugin({
@@ -484,7 +484,7 @@ plugins: [
 
 
 
-##### 1.4.5.3 CleanWebpackPlugin
+##### 1.4.5.3 清除构建资源`CleanWebpackPlugin`
 
 通常，在每次构建前清理`/dist`文件夹，是比较推荐的做法，因此只会生成用到的文件。`clean-webpack-plugin`是一个比较普及的管理插件，让我们安装和配置下。
 
@@ -520,4 +520,66 @@ const webpackConfig = {
  
 module.exports = webpackConfig;
 ```
+
+##### 1.4.5.4 处理CSS
+
+使用`css-loader`或`raw-loader`将其转换为js模块，然后使用`extractTextPlugin`提取到单独的文件中
+
+在`src`目录中创建`style`目录，里面存放我们需要的样式文件。要在webpack处理css,我们需要安装两个插件`style`以及`style-loader`
+
+```
+npm install --save-dev style-loader css-loader
+```
+
+另外我们还需要`extract-text-webpack-plugin` 的作用是分离项目中的css文件
+
+```
+npm install --save-dev extract-text-webpack-plugin
+```
+
+安装`postcss`
+
+```
+npm install postcss-loader --save-dev
+```
+
+压缩css文件可以使用`optimize-css-assets-webpack-plugin`
+
+```
+npm install --save-dev optimize-css-assets-webpack-plugin
+```
+
+
+
+##### 1.4.5.5 处理sass
+
+通过将 [style-loader](https://github.com/webpack-contrib/style-loader) 和 [css-loader](https://github.com/webpack-contrib/css-loader) 与 sass-loader 链式调用，可以立刻将样式作用在 DOM 元素。
+
+安装
+
+```
+npm install sass-loader node-sass webpack --save-dev
+```
+
+```js
+module.exports = {
+    ...
+    module: {
+        rules: [{
+            test: /\.scss$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS
+            }]
+        }]
+    }
+};
+```
+
+
+
+
 

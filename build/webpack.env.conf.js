@@ -22,7 +22,7 @@ const ENV_LIST = [
         // 开发环境
         envName: 'dev',
         dirName: path.resolve(__dirname,'../src'),
-        baseUrl: 'http://100.xxx.xxx',
+        baseUrl: 'http://127.0.1:9000',
         // 资源根目录
         assetsPublicPath: '/assets/'
     },

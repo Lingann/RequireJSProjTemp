@@ -11,9 +11,6 @@ const RULES_CONFIG = require("./webpack.rules.conf");
 // html webpack plugin插件引入
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-// 清除未引用的文件
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-
 // 拷贝公共资源文件到编译目录
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -38,8 +35,6 @@ module.exports = {
 
     },
     plugins: [
-        // 使用CleanWebpack插件
-        new CleanWebpackPlugin(),
         // 使用cleanWebpack插件
         new CopyWebpackPlugin([
             {
@@ -53,6 +48,13 @@ module.exports = {
             title: "页面标题",
             template: path.resolve(__dirname,"../src/pages/index.html"),
             filename: "index.html"
+            // excludeChunks: ['list','detail']
+        }),
+        // 使用HTMLWebpack插件
+        new HtmlWebpackPlugin({
+            title: "关于我们",
+            template: path.resolve(__dirname,"../src/pages/about.html"),
+            filename: "about.html"
             // excludeChunks: ['list','detail']
         }),
     ]

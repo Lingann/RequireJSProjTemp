@@ -27,6 +27,12 @@ const webpackConfigDev = {
             }
         }
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.BASE_URL' : '\"' + process.env.BASE_URL + '\"'
+        })
+    ],
+    devtool: "source-map"
 };
 
 module.exports = merge(webpackConfigBase,webpackConfigDev);

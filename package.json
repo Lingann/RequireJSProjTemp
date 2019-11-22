@@ -4,9 +4,9 @@
   "description": "RequireJS 模板项目",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --optimize-minimize",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
+    "test": "npm run build --[test]",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.conf.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js",
     "start": "npm run dev"
   },
   "repository": {
@@ -27,6 +27,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.5",
+    "cross-env": "^6.0.3",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",

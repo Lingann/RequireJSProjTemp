@@ -224,7 +224,7 @@ npm install --save-dev webpack-merge
 
 
 
-**配置`webpack.env.conf.js`文件**
+配置`webpack.env.conf.js`文件**
 
 `webpack.env.cong.js`作为环境定义文件,将需要的开发环境和生产环境中通用配置集中存放在这里
 
@@ -392,10 +392,36 @@ module.exports = rules;
 
 
 
+**配置`package.json`**
+
+```js
+"scripts": {
+    "test": "npm run build --[test]",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.conf.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js"
+},
+```
+
+
+
+在上面的`package.json`中的`cross-env`会进行不是内部或外部命令，也不是可运行程序的报错。
+
+简单来说，就是window不支持`NODE_ENV=development`的设置方式
+
+解决办法是安装`cross-env`
+
+```
+npm install cross-env --save-dev
+```
+
+然后在`NODE_ENV=xxxxxx`前面添加`cross-env`就可以了
+
+
+
 - [webpack4 多页面，多环境配置Demo](https://github.com/Blubiubiu/webpack4_mpa_demo)
+- [Webpack4 多页面，多环境配置，逐行解释](https://www.520mwx.com/view/5181)
 - [Webpack下多环境配置的思路](https://juejin.im/post/5b319c5e518825749d2d60be)
 - [Webpack 生产环境配置介绍](https://webpack.js.org/guides/production/)
-
 - [为什么我们要做三份 Webpack配置文件](https://zhuanlan.zhihu.com/p/29161762)
 
 #### 1.4.4 webpack构建多页面

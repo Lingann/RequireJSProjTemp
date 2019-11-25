@@ -14,6 +14,7 @@ const rules = [
             // css中的基础路径
             publicPath: "../"
         }),
+
         // use: extractSass.extract({
         //     use: [
         //         {
@@ -24,6 +25,21 @@ const rules = [
         //         }],
         //     fallback: "style-loader"
         // })
-    }];
+    },
+    {
+        test: /\.ejs$/,
+        // loader: 'ejs-loader',
+        use: ['ejs-loader']
+    },
+    {
+        test: /\.html$/,
+        use: [{
+            loader: 'html-loader',
+            options: {
+                interpolate: true,
+                minimize: false
+            }}]
+    },
+    ];
 
 module.exports = rules;

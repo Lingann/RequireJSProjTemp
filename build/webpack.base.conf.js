@@ -52,6 +52,9 @@ module.exports = {
         }
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            _: "lodash"
+        }),
         // 使用cleanWebpack插件
         new CopyWebpackPlugin([
             {

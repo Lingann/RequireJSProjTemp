@@ -581,5 +581,64 @@ module.exports = {
 
 
 
+##### 1.4.5.6 使用ejs进行模板嵌套
 
+ejs-loader使用的lodash库中的template函数编译ejs模板，而不是使用标准ejs模板引擎。ejs-loader使用loadsh库中的template函数编译ejs模板而不是使用标准ejs模板引擎。
+
+> ejs本来是用`<% - inclued('xxx') %>` 引用模板的，而我测试ejs-loader不能这么用，得用`<%= require('xxx') () %>` （ejs-loader 处理后是个方法，调用该方法会返回处理后的html)
+
+先安装lodash，lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率，提高js原生方法性能的js库。
+
+```
+npm install --save-dev lodash
+```
+
+
+
+**`安装ejs-loader`**
+
+```
+npm install --save-dev ejs-loader
+```
+
+ **配置**
+
+```js
+module:{
+	rules: [
+        {
+            test: /\.ejs$/,
+            // loader: 'ejs-loader',
+            use: ['ejs-loader']
+        },
+    ]
+}
+```
+
+除了ejs之外，我们还需要处理html所以再安装一个`html-loader`
+
+```js
+module:{
+	rules: [
+        {
+            test: /\.html$/,
+            use: [{
+            loader: 'html-loader',
+            options: {
+            interpolate: true,
+            minimize: false
+            }
+            }]
+        }
+    ]
+}
+```
+
+
+
+
+
+- [Webpack4 + ejs构建多页面应用](http://www.neiltop.com/detail/5d47e2eddc40834940b93902)
+
+- [webpack-使用html-webpack-plugin和ejs-loader将侧栏、头部、底部公共html做成模板，并生成合并后的html页面](https://www.cnblogs.com/jffun-blog/p/9465254.html)
 

@@ -636,9 +636,63 @@ module:{
 
 
 
-
-
 - [Webpack4 + ejs构建多页面应用](http://www.neiltop.com/detail/5d47e2eddc40834940b93902)
 
 - [webpack-使用html-webpack-plugin和ejs-loader将侧栏、头部、底部公共html做成模板，并生成合并后的html页面](https://www.cnblogs.com/jffun-blog/p/9465254.html)
+
+
+
+##### 1.4.5.7 `url-loader`解决项目中图片打包路径问题
+
+在实际生产中有以下几种图片的引用方式:
+
+```html
+<img src="photo.jpg" />
+<div style="background:url(photo.jpg)"><div>
+```
+
+css文件中的背景图等设置
+
+```css
+.photo {
+	background: url(photo.jpg);
+}
+```
+
+在js中进行图片引用
+
+```js
+$('.img').attr("src","photo.jpg");
+```
+
+
+
+在webpack中引入图片需要依赖`url-loader`这个加载器
+
+```
+npm install --save-dev url-loader
+```
+
+
+
+然后在在`webpack.config.js`的rules中进行配置
+
+```js
+module:{
+	rules: [
+        {
+            test:/\.(jpg|png|gif|bmp|jpeg)$/,
+            loader: 'url-loader?limit=8192&name=img/[hash:8].[name].[ext]'
+        }
+    ]
+}
+```
+
+
+
+
+
+**关于在`ejs`文件中的图片打包问题**
+
+`ejs`模板里面通过`<img src="<%= require('assets/images/xxxx.jpg') %>">`引入图片，打包的时候就能生成对应的图片资源文件。
 

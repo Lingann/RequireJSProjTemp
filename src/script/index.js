@@ -1,2 +1,2 @@
 import '../style/main.scss'
-console.log("????");
+console.log("进入主页");

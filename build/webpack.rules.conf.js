@@ -14,17 +14,10 @@ const rules = [
             // css中的基础路径
             publicPath: "../"
         }),
-
-        // use: extractSass.extract({
-        //     use: [
-        //         {
-        //             loader: "css-loader"
-        //         },
-        //         {
-        //             loader: "sass-loader"
-        //         }],
-        //     fallback: "style-loader"
-        // })
+    },
+    {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
     },
     {
         test: /\.ejs$/,

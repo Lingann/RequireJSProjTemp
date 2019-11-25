@@ -17,7 +17,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         index : path.resolve(__dirname,'../src/script/index.js'),
-        // aboutUS: '../src/aboutus.js',
+        about: path.resolve(__dirname,'../src/script/about.js'),
         // contactUs : '../src/contactus.js'
     },
     module: {
@@ -67,15 +67,15 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "页面标题",
             template: path.resolve(__dirname,"../src/pages/index.ejs"),
-            filename: "index.html"
-            // excludeChunks: ['list','detail']
+            filename: "index.html",
+            chunks: ['index']
         }),
         // 使用HTMLWebpack插件
         new HtmlWebpackPlugin({
             title: "关于我们",
             template: path.resolve(__dirname,"../src/pages/about.ejs"),
-            filename: "about.html"
-            // excludeChunks: ['list','detail']
+            filename: "about.html",
+            chunks: ['about']
         }),
     ]
 };

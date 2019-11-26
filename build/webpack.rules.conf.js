@@ -20,7 +20,7 @@ const rules = [
         use: {
             loader: "url-loader",
             options: {
-                name: '[name].[ext]',
+                name: '[hash].[ext]',
                 limit: '8192',
                 outputPath: 'img/'
             }

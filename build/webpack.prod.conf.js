@@ -36,7 +36,7 @@ const webpackConfigProd = {
         }),
         // 分离css插件参数为提取出去的路径
         new extractTextPlugin({
-            filename: 'css/[hash].min.css',
+            filename: 'css/[name].[hash].min.css',
         }),
         // 压缩css
         new OptimizeCSSPlugin({

@@ -33,7 +33,7 @@ module.exports = {
         //使用HTMLWebpack插件
         new HtmlWebpackPlugin({
             title: "页面标题",
-            template: "./src/pages/index.ejs",
+            template: "./src/template/index.ejs",
             filename: "index.ejs"
             // excludeChunks: ['list','detail']
         }),

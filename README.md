@@ -696,3 +696,23 @@ module:{
 
 `ejs`模板里面通过`<img src="<%= require('assets/images/xxxx.jpg') %>">`引入图片，打包的时候就能生成对应的图片资源文件。
 
+ 由于经过测试，发现上述在模板中无法打包图片。所以尝试另一种方式，即使用`html-webpack-loader`：
+
+```
+npm install --save-dev html-withimg-loader
+```
+
+然后在`html-webpack-plugin的配置中加入如下配置
+
+```js
+new WebpackHtmlPlugin({
+	filename: item,
+	template: 'html-withimg-loader!' + path.resolve(__dirname,"src/html/index.html"),
+    chunks: ['js/common',name]
+})
+```
+
+ 在上述测试过程中，打包后，图片路径依旧会出现乱码，尽管也尝试了`underscore-template-loader`也依旧不行。
+
+索性，ejs上的图片，通过资源路径进行引用，然后将整个资源目录进行拷贝。暂时解决这个问题
+

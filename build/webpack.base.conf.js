@@ -66,16 +66,18 @@ module.exports = {
         // 使用HTMLWebpack插件
         new HtmlWebpackPlugin({
             title: "页面标题",
-            template: path.resolve(__dirname,"../src/pages/index.ejs"),
+            template: path.resolve(__dirname,"../src/index.ejs"),
             filename: "index.html",
-            chunks: ['index']
+            chunks: ['index'],
+            inject:true
         }),
         // 使用HTMLWebpack插件
         new HtmlWebpackPlugin({
             title: "关于我们",
-            template: path.resolve(__dirname,"../src/pages/about.ejs"),
+            template: path.resolve(__dirname,"../src/about.ejs"),
             filename: "about.html",
-            chunks: ['about']
+            chunks: ['about'],
+            inject:true
         }),
     ]
 };

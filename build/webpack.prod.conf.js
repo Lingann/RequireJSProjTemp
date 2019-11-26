@@ -18,7 +18,7 @@ const webpackConfigProd = {
         path: path.resolve(__dirname,'../dist'),
         //打包多出口文件
         filename: 'js/[name].[hash].js',
-        publicPath: '../'
+        publicPath: './'
     },
     devtool: 'cheap-module-eval-source-map',
     plugins: [
@@ -36,7 +36,7 @@ const webpackConfigProd = {
         }),
         // 分离css插件参数为提取出去的路径
         new extractTextPlugin({
-            filename: 'css/[name].[hash].min.css',
+            filename: 'css/[hash].min.css',
         }),
         // 压缩css
         new OptimizeCSSPlugin({

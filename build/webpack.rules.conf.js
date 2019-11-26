@@ -16,23 +16,37 @@ const rules = [
         }),
     },
     {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
+        test: /\.(png|jp?g|gif|svg)$/,
+        use: {
+            loader: "url-loader",
+            options: {
+                name: '[name].[ext]',
+                limit: '8192',
+                outputPath: 'img/'
+            }
+        }
+        // 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+
     },
     {
         test: /\.ejs$/,
-        // loader: 'ejs-loader',
-        use: ['ejs-loader']
+        loader: 'ejs-loader',
+        // use: {
+        //     loader:'underscore-template-loader'
+        // },
+        // query: {
+        //     engine: 'lodash'
+        // }
     },
-    {
-        test: /\.html$/,
-        use: [{
-            loader: 'html-loader',
-            options: {
-                interpolate: true,
-                minimize: false
-            }}]
-    },
+    // {
+    //     test: /\.html$/,
+    //     use: [{
+    //         loader: 'html-loader',
+    //         options: {
+    //             interpolate: true,
+    //             minimize: false
+    //         }}]
+    // },
     ];
 
 module.exports = rules;

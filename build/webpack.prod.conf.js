@@ -7,8 +7,10 @@ const webpackConfigBase = require("./webpack.base.conf");
 /****************************插件引入*************************************/
 // 清除目录等
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
-const extractTextPlugin = require("extract-text-webpack-plugin");
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+// const extractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 // process.env.NODE_ENV = "test";
 
@@ -18,7 +20,7 @@ const webpackConfigProd = {
         path: path.resolve(__dirname,'../dist'),
         //打包多出口文件
         filename: 'js/[name].[hash].js',
-        publicPath: './'
+        // publicPath: './'
     },
     devtool: 'cheap-module-eval-source-map',
     plugins: [
@@ -35,16 +37,29 @@ const webpackConfigProd = {
             'process.env.BASE_URL' : '\"' + process.env.BASE_URL + '\"'
         }),
         // 分离css插件参数为提取出去的路径
-        new extractTextPlugin({
-            filename: 'css/[name].[hash].min.css',
-        }),
+        // new MiniCssExtractPlugin({
+        //     filename: 'css/[name].[hash].min.css',
+        // }),
         // 压缩css
-        new OptimizeCSSPlugin({
-            cssProcessorOptions: {
-                safe: true
+        // new OptimizeCSSPlugin({
+        //     cssProcessorOptions: {
+        //         safe: true
+        //     }
+        // })
+    ],
+    optimization: {
+        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true,
+                },
             }
-        })
-    ]
+        },
+    }
 };
 
 module.exports = merge(webpackConfigBase,webpackConfigProd);

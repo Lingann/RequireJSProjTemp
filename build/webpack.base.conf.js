@@ -3,6 +3,8 @@ const path = require('path');
 // 引入webpack
 const webpack = require("webpack");
 
+const merge = require('webpack-merge');
+
 // 读取同一目录下的入口配置文件
 const ENV_CONFIG =require("./webpack.env.conf");
 const RULES_CONFIG = require("./webpack.rules.conf");
@@ -14,14 +16,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 拷贝公共资源文件到编译目录
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+module.exports = merge(RULES_CONFIG,{
     entry: {
         index : path.resolve(__dirname,'../src/script/index.js'),
         about: path.resolve(__dirname,'../src/script/about.js'),
         // contactUs : '../src/contactus.js'
-    },
-    module: {
-        rules: [...RULES_CONFIG]
     },
     resolve: {
         alias: {
@@ -80,4 +79,4 @@ module.exports = {
             inject:true
         }),
     ]
-};
+});

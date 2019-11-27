@@ -4,20 +4,20 @@ const merge = require("webpack-merge");
 const webpackConfigBase = require('./webpack.base.conf');
 
 // const extractTextPlugin = require("extract-text-webpack-plugin");
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+// const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackConfigDev = {
     mode: 'development',// 通过mode声明开发环境
     output: {
         // publicPath: '../', // 打包后资源文件的引用会基于此路径
-        path: path.resolve(__dirname,'../dist'),
+        path: path.resolve(__dirname,'../src'),
         publicPath: 'http://127.0.1:9000/',
         // 打包多出口文件
         filename: "script/[id].[hash:8].bundle.js", // 在development模式下,id为name
         chunkFilename: "script/[id].[hash:8].chunk.js"
     },
     devServer: {
-        contentBase : path.join(__dirname,"../src/index"),
+        contentBase : path.join(__dirname,"../src"),
         publicPath: '/',
         host: "127.0.0.1",
         port: 9000,
@@ -42,17 +42,17 @@ const webpackConfigDev = {
         // new extractTextPlugin({
         //     filename: 'css/[name].[hash].min.css',
         // }),
-        new MiniCssExtractPlugin({
-            filename: "./css/[id].[name].[chunkhash:8].css",
-            chunkFilename: "./css/[id].[name].[chunkhash:8].css"
-        }),
+        // new MiniCssExtractPlugin({
+        //     filename: "./css/[id].[name].[chunkhash:8].css",
+        //     chunkFilename: "./css/[id].[name].[chunkhash:8].css"
+        // }),
         new webpack.HotModuleReplacementPlugin(),
         // // 压缩css
-        new OptimizeCSSPlugin({
-            cssProcessorOptions: {
-                safe: true
-            }
-        })
+        // new OptimizeCSSAssetsPlugin({
+        //     cssProcessorOptions: {
+        //         safe: true
+        //     }
+        // })
     ],
     devtool: "source-map"
     // devtool: false

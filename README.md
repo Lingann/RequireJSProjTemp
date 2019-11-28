@@ -1,4 +1,4 @@
-# RequireJS 项目模板
+# Webpack 项目模板
 
 ## 一、项目准备
 

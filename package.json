@@ -1,7 +1,7 @@
 {
-  "name": "requirejsprojtemp",
-  "version": "0.0.0",
-  "description": "RequireJS 模板项目",
+  "name": "WebpackProjectTemplate",
+  "version": "0.0.1",
+  "description": "Webpack 模板项目",
   "main": "index.js",
   "scripts": {
     "test": "npm run build --[test]",

@@ -3,8 +3,6 @@ const webpack = require('webpack');
 const merge = require("webpack-merge");
 const webpackConfigBase = require('./webpack.base.conf');
 
-// const extractTextPlugin = require("extract-text-webpack-plugin");
-// const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackConfigDev = {
     mode: 'development',// 通过mode声明开发环境
@@ -39,20 +37,7 @@ const webpackConfigDev = {
             'process.env.BASE_URL' : '\"' + process.env.BASE_URL + '\"'
         }),
         // // 分离css插件参数为提取出去的路径
-        // new extractTextPlugin({
-        //     filename: 'css/[name].[hash].min.css',
-        // }),
-        // new MiniCssExtractPlugin({
-        //     filename: "./css/[id].[name].[chunkhash:8].css",
-        //     chunkFilename: "./css/[id].[name].[chunkhash:8].css"
-        // }),
         new webpack.HotModuleReplacementPlugin(),
-        // // 压缩css
-        // new OptimizeCSSAssetsPlugin({
-        //     cssProcessorOptions: {
-        //         safe: true
-        //     }
-        // })
     ],
     devtool: "source-map"
     // devtool: false

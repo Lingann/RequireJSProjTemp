@@ -42,27 +42,23 @@ module.exports = {
                     options: {
                         name: '[hash].[ext]',
                         limit: '8192',
-                        outputPath: 'img/'
+                        outputPath: 'img/',
+                        esModule: false,
                     }
                 }
-                // 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
-
             },
             {
                 test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
                 use: [{
-                    loader: "file-loader"
+                    loader: "file-loader",
+                    options: {
+                        esModule: false,
+                    }
                 }]
             },
             {
                 test: /\.ejs$/,
-                loader: 'ejs-loader',
-                // use: {
-                //     loader:'underscore-template-loader'
-                // },
-                // query: {
-                //     engine: 'lodash'
-                // }
+                loader: 'underscore-template-loader',
             },
             {
                 test: /\.html$/,

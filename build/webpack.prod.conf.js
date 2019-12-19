@@ -50,7 +50,19 @@ const webpackConfigProd = {
     optimization: {
         minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
         splitChunks: {
+            minSize: 30,  //提取出的chunk的最小大小
             cacheGroups: {
+                default:{
+                    name: 'common',
+                    chunks: 'initial',
+                    minChunks: 2  // 模块被引用2次以上才抽离
+                },
+                vendors: {  //拆分第三方库（通过npm|yarn安装的库）
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'initial',
+                    priority: -10
+                },
                 styles: {
                     name: 'styles',
                     test: /\.css$/,

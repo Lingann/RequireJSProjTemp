@@ -3,12 +3,10 @@ const webpack = require("webpack");
 const merge = require("webpack-merge");
 
 const webpackConfigBase = require("./webpack.base.conf");
-
+const config = require("./webpack.env.conf");
 /****************************插件引入*************************************/
 // 清除目录等
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
-// const extractTextPlugin = require("extract-text-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
@@ -20,7 +18,8 @@ const webpackConfigProd = {
         path: path.resolve(__dirname,'../dist'),
         //打包多出口文件
         filename: 'js/[name].[hash].js',
-        // publicPath: './'
+        // chunkFilename: "js/[id].[hash:8].chunk.js"
+        // publicPath: './static_asset/'
     },
     devtool: 'cheap-module-eval-source-map',
     plugins: [
@@ -50,6 +49,9 @@ const webpackConfigProd = {
     optimization: {
         minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
         splitChunks: {
+            // chunks: 'all',
+            // minSize: 30000,
+            // name:true,
             minSize: 30,  //提取出的chunk的最小大小
             cacheGroups: {
                 default:{

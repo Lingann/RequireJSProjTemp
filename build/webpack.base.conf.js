@@ -37,8 +37,8 @@ module.exports = merge(RULES_CONFIG,{
         // 使用cleanWebpack插件
         new CopyWebpackPlugin([
             {
-                from: path.resolve(__dirname, '../src/assets'), // 不打包直接输出的文件
-                to: 'assets', // 打包后静态文件放置位置
+                from: path.resolve(__dirname, '../src/public/static_asset'), // 不打包直接输出的文件
+                to: 'public/asset', // 打包后静态文件放置位置
                 ignore: ['.*'] // 忽略规则。（这种写法表示将该文件夹下的所有文件都复制）
             }
         ]),

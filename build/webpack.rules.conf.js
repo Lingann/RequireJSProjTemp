@@ -1,10 +1,8 @@
-// const extractTextPlugin = require("extract-text-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const envConfig = require('./webpack.env.conf');
+
 const devMode = process.env.NODE_ENV !== 'production';
-// const extractSass = new extractTextPlugin({
-//     filename: "[name].[contenthash].css",
-//     disable: process.env.NODE_ENV === "development"
-// });
 module.exports = {
     module: {
         rules: [
@@ -18,6 +16,7 @@ module.exports = {
                             // 默认使用 webpackOptions.output中的publicPath
                             // publicPath的配置，和plugins中设置的filename和chunkFilename的名字有关
                             // 如果打包后，background属性中的图片显示不出来，请检查publicPath的配置是否有误
+                            // output: 'css/',
                             publicPath:process.env.NODE_ENV === "development" ? '../' : "../",
                             // publicPath: devMode ? './' : '../',   // 根据不同环境指定不同的publicPath
                             hmr: devMode, // 仅dev环境启用HMR功能
@@ -27,38 +26,64 @@ module.exports = {
                     'sass-loader',
                 ],
             },
-            // {
-            //     test: /\.js$/,
-            //     // exclude: /(node_modules)/,
-            //     include: [path.resolve(__dirname, '../src')],
-            //     use: {
-            //         loader: "babel-loader"
-            //     }
-            // },
             {
-                test: /\.(png|jp?g)$/,
+                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
                 use: {
                     loader: "url-loader",
                     options: {
                         name: '[hash].[ext]',
                         limit: '8192',
-                        outputPath: 'img/',
+                        outputPath: 'public/font/',
                         esModule: false,
                     }
-                }
+                },
+                exclude: [
+                    path.resolve(__dirname,'../src/static_asset')
+                ]
             },
             {
-                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+                test: /\.(png|jp?g)$/,
                 use: [{
                     loader: "file-loader",
                     options: {
+                        outputPath: (url, resourcePath, context) => {
+                            if (/my-custom-image\.png/.test(resourcePath)) {
+                                return `other_public_path/${url}`;
+                            }
+
+                            if (/image/.test(resourcePath)) {
+                                return `public/image/${url}`;
+                            }
+                            return `img/${url}`;
+                        },
+                        publicPath:  (url, resourcePath, context) => {
+                            if (/my-custom-image\.png/.test(resourcePath)) {
+                                return `other_public_path/${url}`;
+                            }
+                            if (/image/.test(resourcePath)) {
+                                if (process.env.NODE_ENV=== 'test'){
+                                    return envConfig.ENV_LIST[1].assetsPublicPath +`image/${url}`;
+                                }else if (process.env.NODE_ENV=== 'production'){
+                                    return envConfig.ENV_LIST[2].assetsPublicPath +`image/${url}`;
+                                }else {
+                                    return `public/image/${url}`;
+                                }
+                            }
+                            return `img/${url}`;
+                        },
                         esModule: false,
                     }
-                }]
+                }],
+                exclude: [path.join(__dirname,'../static_asset')]
+
             },
             {
                 test: /\.ejs$/,
                 loader: 'underscore-template-loader',
+                query: {
+                    // root: "myapp",
+                    attributes: ['img:src', 'x-img:src']
+                }
             },
             {
                 test: /\.html$/,

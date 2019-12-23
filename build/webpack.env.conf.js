@@ -12,27 +12,27 @@ const path = require('path');
 
 const ENV_LIST = [
     {
-        // 本地环境
-        envName: 'local',
-        dirName: 'local',
-        baseUrl: "http://199.xxx.xxx",
-        assetsPublicPath: '/'
-    },
-    {
         // 开发环境
         envName: 'dev',
-        dirName: path.resolve(__dirname,'../src'),
-        baseUrl: 'http://127.0.1:9000',
-        // 资源根目录
-        assetsPublicPath: '/assets/'
+        dirName:  path.resolve(__dirname,'../src'),
+        baseUrl: "http://127.0.1:9000",
+        assetsPublicPath: '/'
     },
     {
         // 测试环境
         envName: 'test',
         dirName: path.resolve(__dirname,'../dist'),
-        baseUrl: 'http://111.xxx.xxx',
+        baseUrl: 'http://127.0.1:9000',
+        // 资源根目录
+        assetsPublicPath: 'public/'
+    },
+    {
+        // 部署环境
+        envName: 'prod',
+        dirName: path.resolve(__dirname,'../dist'),
+        baseUrl: 'https://www.XXXX.cn/',
         // 资源根目录(CDN上的绝对路径，或相对路径)
-        assetsPublicPath : '/'
+        assetsPublicPath : 'https://www.cdn.XXXXX.cn/'
     }
 ];
 
